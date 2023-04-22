@@ -21,22 +21,18 @@ for i in range (1, nrows):
 for i in range (1, nrows):
 	d2.iloc[i,5] = str ( int(d2.iloc[i,4]) - int(d2.iloc[i-1,4]) )
 drop = []
-for i in range (1, 15):
+for i in range (1, nrows):
 	if d2.iloc[i, 0] == d2.iloc[i-1,0]:
-		print (i, d2.iloc[i,0])
 		if d2.iloc[i, 1] == d2.iloc[i-1, 1]:
-			print (i, d2.iloc[i, 1])
 			if d2.iloc[i, 2] == d2.iloc[i-1, 2]:
-				print (i, d2.iloc[i, 2])
 				if d2.iloc[i, 4] == d2.iloc[i-1, 4]:
-					print (i, d2.iloc[i, 4])
-					print(d2.iloc[i, 6])
 					if d2.iloc[i, 6] == d2.iloc[i-1, 6]:
-						print (i, d2.iloc[i, 1])
+						drop.append(i-1)
+					if pd.isna(d2.iloc[i, 6]) and pd.isna(d2.iloc[i-1, 6]):
 						drop.append(i-1)
 
 
-
+print ('----')
 print (drop)
 d2 = d2.drop(d2.index[drop])
 
